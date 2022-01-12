@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.BaseCode.New;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.BaseCode.New.Team4008HMNew;
 
@@ -23,6 +24,18 @@ public class Team4008TeleOpNew extends LinearOpMode
         telemetry.addData("Say", "TeleOp Starting");
         telemetry.update();
         robot.Capper.setPosition(0);
+
+        /*robot.DriveRightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.DriveLeftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.DriveRightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveRightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.Intake.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        */
 
         waitForStart();
 
@@ -47,9 +60,13 @@ public class Team4008TeleOpNew extends LinearOpMode
             double frontRightPower = (y - x - rx) / denominator;
             double backRightPower = (y + x - rx) / denominator;
 
+            /*telemetry.addData("RightFront", robot.DriveRightFront.getCurrentPosition());
+            telemetry.addData("RightBack", robot.DriveRightBack.getCurrentPosition());
+            telemetry.addData("LeftFront", robot.DriveLeftFront.getCurrentPosition());
+            telemetry.addData("LeftBack", robot.DriveLeftBack.getCurrentPosition());
             telemetry.addData("Intake Encoder", robot.Intake.getCurrentPosition());
             telemetry.addData("Intake Power", robot.Intake.getPower());
-            telemetry.update();
+            telemetry.update(); */
 
             robot.DriveLeftFront.setPower(frontLeftPower * mag * mag1);
             robot.DriveLeftBack.setPower(backLeftPower * mag * mag1);
