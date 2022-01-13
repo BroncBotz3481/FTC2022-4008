@@ -43,7 +43,7 @@ public class Strafe_Score_Red extends LinearOpMode{
         robot.DriveRightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Backwards to Aliance Hub
-        distance = 12;
+        distance = 24;
         robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         tick = (distance * 537.7)/(4 * Math.PI);
@@ -65,8 +65,8 @@ public class Strafe_Score_Red extends LinearOpMode{
         sleep(750);
 
         // Turning
-        distance = 12;
-        multy = 0.2;
+        distance = 20;
+        multy = 0.3;
         robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         tick = (distance * 537.7)/(4 * Math.PI);

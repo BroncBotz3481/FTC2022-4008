@@ -20,16 +20,17 @@ public class Scoring_Level2 extends LinearOpMode{
         waitForStart();
 
         //Scoring Level 2
-        robot.Intake.setPower(0.05);
+        robot.Intake.setPower(-0.15);
+        sleep(1000);
         robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.Intake.setPower(0.3);
-        double tick = 1100;
+        robot.Intake.setPower(-0.3);
+        double tick = 750;
         while(opModeIsActive() && Time.milliseconds() < 4000 && robot.Intake.getCurrentPosition() > -tick) {
             telemetry.addData("Encoder Val", robot.Intake.getCurrentPosition());
             telemetry.update();
         }
-        robot.Intake.setPower(0.05);
+        robot.Intake.setPower(-0.02);
         robot.IntakeWheel.setPower(0.5);
         sleep(1000);
         robot.IntakeWheel.setPower(0);
