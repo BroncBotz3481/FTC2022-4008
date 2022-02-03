@@ -73,7 +73,7 @@ public class Team4008TeleOpNew extends LinearOpMode
             robot.DriveRightFront.setPower(frontRightPower * mag * mag1);
             robot.DriveRightBack.setPower(backRightPower * mag * mag1);
 
-            robot.Intake.setPower(gamepad2.right_stick_y*0.45);
+            robot.Intake.setPower(gamepad2.right_stick_y*0.75);
 
             //Servo Capper
             if (gamepad2.dpad_up)
@@ -103,14 +103,14 @@ public class Team4008TeleOpNew extends LinearOpMode
 
             //Duck Spinners (DuckLeft)
             if (gamepad2.a)  {
-                robot.DuckLeft.setPower(-.7);
+                robot.DuckLeft.setPower(-0.85);
             }
             else {
                 robot.DuckLeft.setPower(0);
             }
             //Duck Spinners (DuckRight)
             if (gamepad2.b) {
-                robot.DuckRight.setPower(-.7);
+                robot.DuckRight.setPower(-0.85);
             }
             else {
                 robot.DuckRight.setPower(0);

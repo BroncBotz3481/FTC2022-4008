@@ -41,9 +41,9 @@ public class Team_6976_Auto_1_New_Red extends LinearOpMode {
         robot.DriveLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sleep(750);
 
-        robot.DuckRight.setPower(-0.6);
-        sleep(3500);
-        robot.DuckRight.setPower(0);
+        robot.DuckLeft.setPower(-0.5);
+        sleep(6000);
+        robot.DuckLeft.setPower(0);
         sleep(750);
 
         distance = 3.5;
@@ -55,7 +55,7 @@ public class Team_6976_Auto_1_New_Red extends LinearOpMode {
         Time.reset();
         robot.DriveRight.setPower(0.8);
         robot.DriveLeft.setPower(-0.8);
-        while (opModeIsActive() && Time.milliseconds() < 350 && robot.DriveLeft.getCurrentPosition() < tick) {
+        while (opModeIsActive() && Time.milliseconds() < 1000 && robot.DriveLeft.getCurrentPosition() < tick) {
             telemetry.addData("Encoder Val", robot.DriveLeft.getCurrentPosition());
             telemetry.update();
         }
@@ -69,7 +69,7 @@ public class Team_6976_Auto_1_New_Red extends LinearOpMode {
         sleep(900);
         robot.DriveRight.setPower(0.5);
         robot.DriveLeft.setPower(0.5);
-        sleep(1100);
+        sleep(1400);
         robot.DriveRight.setPower(0);
         robot.DriveLeft.setPower(0);
         sleep(2000);
