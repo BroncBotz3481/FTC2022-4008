@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.BaseCode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.BaseCode.Old.HardwareMap4008;
 
-@Autonomous(name="Score_Score_Blue", group="4008")
+@Autonomous(name="!Score_Score_Blue", group="4008")
 
 public class Score_Score_Blue extends LinearOpMode {
     Team4008HMNew robot = new Team4008HMNew();
@@ -21,7 +21,7 @@ public class Score_Score_Blue extends LinearOpMode {
         waitForStart();
 
         //Strafe out from wall Left
-        double distance = 50;
+        double distance = 45;
         multy = 0.6;
         robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -54,7 +54,7 @@ public class Score_Score_Blue extends LinearOpMode {
             telemetry.update();
         }
         robot.Intake.setPower(-0.02);
-        robot.IntakeWheel.setPower(0.5);
+        robot.IntakeWheel.setPower(0.8);
         sleep(1000);
         robot.IntakeWheel.setPower(0);
         robot.Intake.setPower(0);
@@ -63,7 +63,7 @@ public class Score_Score_Blue extends LinearOpMode {
         sleep(500);
 
         //Turning Around
-        distance = 40;
+        distance = 45;
         multy = 0.3;
         robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

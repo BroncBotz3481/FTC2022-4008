@@ -34,7 +34,7 @@ public class Team_6976_TeleOp_New extends LinearOpMode
         {
             robot.DriveLeft.setPower(gamepad1.left_stick_y);
             robot.DriveRight.setPower((gamepad1.right_stick_y));
-            robot.Intake.setPower(gamepad2.left_stick_y);
+            robot.Intake.setPower(-gamepad2.left_stick_y);
 
             if(gamepad2.a){
                 robot.IntakeWheel.setPower(.75);

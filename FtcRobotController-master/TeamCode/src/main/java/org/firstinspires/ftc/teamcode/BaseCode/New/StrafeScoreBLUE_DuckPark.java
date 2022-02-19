@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.BaseCode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.BaseCode.Old.HardwareMap4008;
 
-@Autonomous(name="StrafeScoreBLUE_DuckPark", group="4008")
+@Autonomous(name="!StrafeScoreBLUE_DuckPark", group="4008")
 
 public class StrafeScoreBLUE_DuckPark extends LinearOpMode{
     Team4008HMNew robot = new Team4008HMNew();
@@ -130,7 +130,7 @@ public class StrafeScoreBLUE_DuckPark extends LinearOpMode{
         sleep(500);
 
         //Turning Right
-        distance = 18;
+        distance = 20;
         multy = 0.3;
         robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

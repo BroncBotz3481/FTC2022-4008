@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.BaseCode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.BaseCode.Old.HardwareMap4008;
 
-@Autonomous(name="Score_Score_Red", group="4008")
+@Autonomous(name="!Score_Score_Red", group="4008")
 
 public class Score_Score_Red extends LinearOpMode {
     Team4008HMNew robot = new Team4008HMNew();
