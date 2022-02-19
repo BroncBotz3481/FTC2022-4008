@@ -8,9 +8,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.BaseCode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.BaseCode.Old.HardwareMap4008;
 
-@Autonomous(name="!StrafeScoreRED_DuckPark", group="4008")
+@Autonomous(name="!StrafeScoreRED_DuckPark2", group="4008")
 
-public class StrafeScoreRED_DuckPark extends LinearOpMode{
+public class StrafeScoreRED_DuckPark2 extends LinearOpMode{
     Team4008HMNew robot = new Team4008HMNew();
     ElapsedTime Time = new ElapsedTime();
     double multy = 0.4;
@@ -19,6 +19,8 @@ public class StrafeScoreRED_DuckPark extends LinearOpMode{
     public void runOpMode() {
         robot.Map(hardwareMap);
         waitForStart();
+
+        sleep(6000);
 
         //Strafe out from wall
         double distance = 10;
@@ -62,7 +64,7 @@ public class StrafeScoreRED_DuckPark extends LinearOpMode{
         robot.DriveLeftBack.setPower(0);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sleep(750);
+        sleep(100);
 
         // Turning
         distance = 20;
@@ -85,7 +87,7 @@ public class StrafeScoreRED_DuckPark extends LinearOpMode{
         robot.DriveLeftBack.setPower(0);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sleep(750);
+        sleep(100);
 
         //Slow Forward to Hub
         distance = 7;
@@ -107,7 +109,7 @@ public class StrafeScoreRED_DuckPark extends LinearOpMode{
         robot.DriveLeftBack.setPower(0);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sleep(750);
+        sleep(100);
 
         //Scoring Level 3
         robot.Intake.setPower(-0.15);
@@ -127,7 +129,7 @@ public class StrafeScoreRED_DuckPark extends LinearOpMode{
         robot.Intake.setPower(0);
         robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sleep(500);
+        sleep(100);
 
         //Turning Left
         distance = 18;
@@ -156,7 +158,7 @@ public class StrafeScoreRED_DuckPark extends LinearOpMode{
         robot.Intake.setPower(0.1);
         sleep(500);
         robot.Intake.setPower(0);
-        sleep(500);
+        sleep(100);
 
         //Drive Straight
         distance = 45;
@@ -179,7 +181,7 @@ public class StrafeScoreRED_DuckPark extends LinearOpMode{
         robot.DriveLeftBack.setPower(0);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sleep(750);
+        sleep(100);
 
         //Strafe Left to Duck Spinner
         distance = 14;
@@ -224,7 +226,7 @@ public class StrafeScoreRED_DuckPark extends LinearOpMode{
         robot.DriveLeftBack.setPower(0);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sleep(750);
+        sleep(100);
 
         //Duck Spinner
         robot.DuckLeft.setPower(-0.5);
@@ -265,6 +267,6 @@ public class StrafeScoreRED_DuckPark extends LinearOpMode{
         robot.DriveLeftFront.setPower(0);
         robot.DriveRightBack.setPower(0);
         robot.DriveLeftBack.setPower(0);
-        sleep(750);
+        sleep(100);
     }
 }
