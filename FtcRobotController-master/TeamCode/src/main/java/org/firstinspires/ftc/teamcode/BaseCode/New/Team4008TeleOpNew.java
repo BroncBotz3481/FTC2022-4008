@@ -1,8 +1,13 @@
 package org.firstinspires.ftc.teamcode.BaseCode.New;
 
+import android.text.method.Touch;
+
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Light;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.teamcode.BaseCode.New.Team4008HMNew;
 
@@ -24,7 +29,6 @@ public class Team4008TeleOpNew extends LinearOpMode
         telemetry.addData("Say", "TeleOp Starting");
         telemetry.update();
         robot.Capper.setPosition(0);
-
         /*robot.DriveRightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveRightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.DriveLeftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -36,7 +40,7 @@ public class Team4008TeleOpNew extends LinearOpMode
         robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.Intake.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         */
-
+        robot.Lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.BEATS_PER_MINUTE_PARTY_PALETTE);
         waitForStart();
 
         while (opModeIsActive())
@@ -51,6 +55,17 @@ public class Team4008TeleOpNew extends LinearOpMode
             double x = -gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
             double rx = -gamepad1.right_stick_x;
 
+
+            if (robot.Touch.isPressed()){
+                robot.Lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.HEARTBEAT_WHITE);
+                telemetry.addData("Touch", robot.Touch.isPressed());
+                telemetry.update();
+            }
+            else {robot.Lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.RED_ORANGE);
+            telemetry.addData("Touch", robot.Touch.isPressed());
+            telemetry.update();}
+
+            // hello
             // Denominator is the largest motor power (absolute value) or 1
             // This ensures all the powers maintain the same ratio, but only when
             // at least one is out of the range [-1, 1]

@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.BaseCode.New;
 
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import static java.lang.Thread.sleep;
 
@@ -22,8 +24,9 @@ public class Team4008HMNew
     public DcMotor DuckLeft = null;
     public DcMotor DuckRight = null;
 
+    TouchSensor Touch;
     public Servo Capper = null;
-
+    public RevBlinkinLedDriver Lights = null;
     //MAKE IT
     HardwareMap hwMap           =  null;
     //public ElapsedTime period  = new ElapsedTime();
@@ -34,12 +37,13 @@ public class Team4008HMNew
     public void Map(HardwareMap hardwareMap)
     {
         hwMap = hardwareMap;
+        Touch = hardwareMap.get(TouchSensor.class, "Touch");
         DriveLeftFront = hwMap.get(DcMotor.class,"DriveLeftFront");
         DriveRightFront = hwMap.get(DcMotor.class,"DriveRightFront");
         DriveLeftBack = hwMap.get(DcMotor.class,"DriveLeftBack");
         DriveRightBack = hwMap.get(DcMotor.class,"DriveRightBack");
-
         Capper = hwMap.get(Servo.class,"Capper");
+        Lights = hwMap.get(RevBlinkinLedDriver.class,"Lights");
 
         DriveLeftFront.setDirection(DcMotor.Direction.FORWARD);
         DriveLeftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
