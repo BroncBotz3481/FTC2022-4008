@@ -227,7 +227,7 @@ public class StrafeScoreBLUE_DuckPark2 extends LinearOpMode{
         sleep(100);
 
         //Strafe Left to Duck Spinner SLOW
-        distance = 5;
+        distance = 8;
         multy = -0.1;
         robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

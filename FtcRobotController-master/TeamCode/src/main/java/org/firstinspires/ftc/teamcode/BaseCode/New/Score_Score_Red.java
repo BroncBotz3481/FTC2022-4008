@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.BaseCode.New;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -41,6 +42,7 @@ public class Score_Score_Red extends LinearOpMode {
         robot.DriveLeftBack.setPower(0);
         robot.DriveRightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveRightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
         //Scoring Level 3
         robot.Intake.setPower(-0.15);
@@ -141,6 +143,10 @@ public class Score_Score_Red extends LinearOpMode {
         robot.IntakeWheel.setPower(-1);
         sleep(2000);
         robot.IntakeWheel.setPower(0);
+        if (robot.Touch.isPressed()){
+            robot.Lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.HEARTBEAT_WHITE);
+            telemetry.addData("Touch", robot.Touch.isPressed());
+            telemetry.update();}
         //drive back
         /*distance = 10;
         multy = 0.8;

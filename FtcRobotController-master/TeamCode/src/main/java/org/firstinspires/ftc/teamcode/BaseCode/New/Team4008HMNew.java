@@ -25,7 +25,8 @@ public class Team4008HMNew
     public DcMotor DuckRight = null;
 
     TouchSensor Touch;
-    public Servo Capper = null;
+    //public Servo Capper = null;
+    public Servo NewCapper = null;
     public RevBlinkinLedDriver Lights = null;
     //MAKE IT
     HardwareMap hwMap           =  null;
@@ -42,7 +43,7 @@ public class Team4008HMNew
         DriveRightFront = hwMap.get(DcMotor.class,"DriveRightFront");
         DriveLeftBack = hwMap.get(DcMotor.class,"DriveLeftBack");
         DriveRightBack = hwMap.get(DcMotor.class,"DriveRightBack");
-        Capper = hwMap.get(Servo.class,"Capper");
+        NewCapper = hwMap.get(Servo.class,"NewCapper");
         Lights = hwMap.get(RevBlinkinLedDriver.class,"Lights");
 
         DriveLeftFront.setDirection(DcMotor.Direction.FORWARD);
