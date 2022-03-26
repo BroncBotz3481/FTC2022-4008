@@ -12,8 +12,10 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraBase;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
+import org.openftc.easyopencv.OpenCvInternalCamera2;
 import org.openftc.easyopencv.OpenCvPipeline;
 
 public class ZoneChooser extends OpenCvPipeline {
@@ -33,10 +35,11 @@ public class ZoneChooser extends OpenCvPipeline {
             "id",
             hwMap.appContext.getPackageName()
         );
-        cam = OpenCvCameraFactory.getInstance().createWebcam(
-                hwMap.get(WebcamName.class, "Webcam"),
-                camMonViewId
-        );
+        cam = OpenCvCameraFactory.getInstance().createInternalCamera2(OpenCvInternalCamera2.CameraDirection.BACK);
+//        cam = OpenCvCameraFactory.getInstance().createWebcam(
+//                hwMap.get(WebcamName.class, "Webcam"),
+//                camMonViewId
+//        );
         cam.setPipeline(this);
         cam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {
@@ -48,7 +51,7 @@ public class ZoneChooser extends OpenCvPipeline {
             @Override
             public void onError(int errorCode)
             {
-                telemetry.addData("CAMERA ERROR", "Issue Opening Camera");
+                telemetry.addData("CAMERA ERROR", errorCode);
                 telemetry.update();
             }
         });
@@ -56,6 +59,7 @@ public class ZoneChooser extends OpenCvPipeline {
     //target
     @Override
     public Mat processFrame(Mat input) {
+        telemetry.addData("TEST","TEST");
         //--THRESHOLD--
         Imgproc.cvtColor(input, mat, Imgproc.COLOR_RGBA2RGB);
         Imgproc.cvtColor(mat, mat, Imgproc.COLOR_RGB2HSV);
