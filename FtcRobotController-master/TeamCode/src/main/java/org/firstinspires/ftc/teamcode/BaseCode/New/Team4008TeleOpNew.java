@@ -99,11 +99,11 @@ public class Team4008TeleOpNew extends LinearOpMode
                 position = Position.MIDDLE;
 
             if (position == Position.UP)
-                robot.NewCapper.setPosition(0.05);
+                robot.NewCapper.setPosition(0);
             else if (position == Position.DOWN)
-                robot.NewCapper.setPosition(0.9);
+                robot.NewCapper.setPosition(0.85);
             else if (position == Position.MIDDLE)
-                robot.NewCapper.setPosition(0.65);
+                robot.NewCapper.setPosition(0.6);
 
             //IntakeWheel (For picking up stuff)
             if (gamepad2.left_bumper) { // Outtake -> Power is positive

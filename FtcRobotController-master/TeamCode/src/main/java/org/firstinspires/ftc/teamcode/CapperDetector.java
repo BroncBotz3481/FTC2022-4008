@@ -20,16 +20,16 @@ public class CapperDetector extends OpenCvPipeline {
     }
     private Location location = Location.NOT_FOUND;
     static final Rect LEFT_ROI = new Rect(
-        new Point(60, 30),
-        new Point(180, 103)
+        new Point(30, 100),
+        new Point(103, 180)
     );
     static final Rect CENTER_ROI = new Rect(
-        new Point(60, 123),
-        new Point(180, 196)
+        new Point(123, 100),
+        new Point(196, 180)
     );
     static final Rect RIGHT_ROI = new Rect(
-            new Point(60, 216),
-            new Point(180, 289)
+            new Point(216, 100),
+            new Point(289, 180)
     );
     public CapperDetector(Telemetry t) { telemetry = t; }
 
