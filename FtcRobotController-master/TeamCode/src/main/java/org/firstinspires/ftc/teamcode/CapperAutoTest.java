@@ -2,20 +2,28 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.BaseCode.New.Team4008HMNew;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
 
 @Autonomous(name="CapperAutoTest", group="4008")
 public class CapperAutoTest extends LinearOpMode {
 
     OpenCvCamera phoneCam;
+    ElapsedTime Time = new ElapsedTime();
+    Team4008HMNew robot = new Team4008HMNew();
+
 
     @Override
     public void runOpMode() throws InterruptedException {
+        robot.Map(hardwareMap);
 //        int cameraMonitorViewId = hardwareMap.appContext
 //                .getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
 //        phoneCam = OpenCvCameraFactory.getInstance()
@@ -54,17 +62,420 @@ public class CapperAutoTest extends LinearOpMode {
 
         waitForStart();
         CapperDetector.Location detectedLocation = capperDetector.getLocation();
-        // Drive to the alliance hub
+        robot.Map(hardwareMap);
+        waitForStart();
+
+        //Strafe out from wall
+        double distance = 10;
+        double multy = 0.5;
+        robot.DriveRightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        double tick = (distance * 537.7)/(4 * Math.PI);
+        Time.reset();
+        robot.DriveRightFront.setPower(multy);
+        robot.DriveLeftFront.setPower(-multy);
+        robot.DriveRightBack.setPower(-multy);
+        robot.DriveLeftBack.setPower(multy);
+        while(opModeIsActive() && Time.milliseconds() < 2000 && robot.DriveRightFront.getCurrentPosition() < tick) {
+            telemetry.addData("Encoder Val", robot.DriveRightFront.getCurrentPosition());
+            telemetry.update();
+        }
+        robot.DriveRightFront.setPower(0);
+        robot.DriveLeftFront.setPower(0);
+        robot.DriveRightBack.setPower(0);
+        robot.DriveLeftBack.setPower(0);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        // Forward to Aliance Hub
+        distance = 24;
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        tick = (distance * 537.7)/(4 * Math.PI);
+        Time.reset();
+        robot.DriveRightFront.setPower(-multy);
+        robot.DriveLeftFront.setPower(-multy);
+        robot.DriveRightBack.setPower(-multy);
+        robot.DriveLeftBack.setPower(-multy);
+        while(opModeIsActive() && Time.milliseconds() < 4000 && robot.DriveLeftFront.getCurrentPosition() > -tick) {
+            telemetry.addData("Encoder Val", robot.DriveLeftFront.getCurrentPosition());
+            telemetry.update();
+        }
+        robot.DriveRightFront.setPower(0);
+        robot.DriveLeftFront.setPower(0);
+        robot.DriveRightBack.setPower(0);
+        robot.DriveLeftBack.setPower(0);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sleep(100);
+
+        // Turning
+        distance = 20;
+        multy = 0.3;
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        tick = (distance * 537.7)/(4 * Math.PI);
+        Time.reset();
+        robot.DriveRightFront.setPower(multy);
+        robot.DriveLeftFront.setPower(-multy);
+        robot.DriveRightBack.setPower(multy);
+        robot.DriveLeftBack.setPower(-multy);
+        while(opModeIsActive() && Time.milliseconds() < 4000 && robot.DriveLeftFront.getCurrentPosition() > -tick) {
+            telemetry.addData("Encoder Val", robot.DriveLeftFront.getCurrentPosition());
+            telemetry.update();
+        }
+        robot.DriveRightFront.setPower(0);
+        robot.DriveLeftFront.setPower(0);
+        robot.DriveRightBack.setPower(0);
+        robot.DriveLeftBack.setPower(0);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sleep(100);
+
+        //Slow Forward to Hub
+        distance = 10;
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        tick = (distance * 537.7)/(4 * Math.PI);
+        Time.reset();
+        robot.DriveRightFront.setPower(-multy);
+        robot.DriveLeftFront.setPower(-multy);
+        robot.DriveRightBack.setPower(-multy);
+        robot.DriveLeftBack.setPower(-multy);
+        while(opModeIsActive() && Time.milliseconds() < 4000 && robot.DriveLeftFront.getCurrentPosition() > -tick) {
+            telemetry.addData("Encoder Val", robot.DriveLeftFront.getCurrentPosition());
+            telemetry.update();
+        }
+        robot.DriveRightFront.setPower(0);
+        robot.DriveLeftFront.setPower(0);
+        robot.DriveRightBack.setPower(0);
+        robot.DriveLeftBack.setPower(0);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sleep(100);
+
         switch (detectedLocation) {
             case LEFT:
+                // score low
+                robot.Intake.setPower(-0.15);
+                sleep(1000);
+                robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                robot.Intake.setPower(-0.3);
+                tick = 400;
+                while (opModeIsActive() && Time.milliseconds() < 4000 && robot.Intake.getCurrentPosition() > -tick) {
+                    telemetry.addData("Encoder Val", robot.Intake.getCurrentPosition());
+                    telemetry.update();
+                }
+                robot.Intake.setPower(-0.02);
+                robot.IntakeWheel.setPower(0.5);
+                sleep(1000);
+                robot.IntakeWheel.setPower(0);
+                robot.Intake.setPower(0);
+                robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                sleep(500);
                 break;
             case CENTER:
+                // score mid
+                //Scoring Level 2
+                robot.Intake.setPower(-0.15);
+                sleep(1000);
+                robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                robot.Intake.setPower(-0.3);
+                tick = 750;
+                while (opModeIsActive() && Time.milliseconds() < 4000 && robot.Intake.getCurrentPosition() > -tick) {
+                    telemetry.addData("Encoder Val", robot.Intake.getCurrentPosition());
+                    telemetry.update();
+                }
+                robot.Intake.setPower(-0.02);
+                robot.IntakeWheel.setPower(0.5);
+                sleep(1000);
+                robot.IntakeWheel.setPower(0);
+                robot.Intake.setPower(0);
+                robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                sleep(500);
                 break;
             case RIGHT:
+                // score high
+                //Scoring Level 3
+                robot.Intake.setPower(-0.15);
+                sleep(1000);
+                robot.Intake.setMode(DcMotor.RunMode.RESET_ENCODERS);
+                robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                robot.Intake.setPower(-0.3);
+                tick = 1300;
+                while (opModeIsActive() && Time.milliseconds() < 4000 && robot.Intake.getCurrentPosition() > -tick) {
+                    telemetry.addData("Encoder Val", robot.Intake.getCurrentPosition());
+                    telemetry.update();
+                }
+                robot.Intake.setPower(-0.02);
+                robot.IntakeWheel.setPower(0.5);
+                sleep(1000);
+                robot.IntakeWheel.setPower(0);
+                robot.Intake.setPower(0);
+                robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                sleep(500);
                 break;
             case NOT_FOUND:
+                // score high
                 break;
         }
+        //Scoring Level 3
+        /*robot.Intake.setPower(-0.15);
+        sleep(1000);
+        robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.Intake.setPower(-0.3);
+        tick = 1300;
+        while(opModeIsActive() && Time.milliseconds() < 8000 && robot.Intake.getCurrentPosition() > -tick) {
+            telemetry.addData("Encoder Val", robot.Intake.getCurrentPosition());
+            telemetry.update();
+        }
+
+        robot.Intake.setPower(-0.02);
+        robot.IntakeWheel.setPower(0.6);
+        sleep(1000);
+        robot.IntakeWheel.setPower(0);
+        robot.Intake.setPower(0);
+        robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sleep(100);
+        */
+        //Turning Right
+        distance = 20;
+        multy = 0.3;
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        tick = (distance * 537.7)/(4 * Math.PI);
+        Time.reset();
+        robot.DriveRightFront.setPower(multy);
+        robot.DriveLeftFront.setPower(-multy);
+        robot.DriveRightBack.setPower(multy);
+        robot.DriveLeftBack.setPower(-multy);
+        while(opModeIsActive() && Time.milliseconds() < 4000 && robot.DriveLeftFront.getCurrentPosition() > -tick) {
+            telemetry.addData("Encoder Val", robot.DriveLeftFront.getCurrentPosition());
+            telemetry.update();
+        }
+        robot.DriveRightFront.setPower(0);
+        robot.DriveLeftFront.setPower(0);
+        robot.DriveRightBack.setPower(0);
+        robot.DriveLeftBack.setPower(0);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sleep(100);
+
+        //Intake Down
+        robot.Intake.setPower(0.2);
+        sleep(500);
+        robot.Intake.setPower(0);
+        sleep(500);
+
+        //Drive Straight
+        distance = 45;
+        multy = 0.5;
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        tick = (distance * 537.7)/(4 * Math.PI);
+        Time.reset();
+        robot.DriveRightFront.setPower(-multy);
+        robot.DriveLeftFront.setPower(-multy);
+        robot.DriveRightBack.setPower(-multy);
+        robot.DriveLeftBack.setPower(-multy);
+        while(opModeIsActive() && Time.milliseconds() < 4000 && robot.DriveLeftFront.getCurrentPosition() > -tick) {
+            telemetry.addData("Encoder Val", robot.DriveLeftFront.getCurrentPosition());
+            telemetry.update();
+        }
+        robot.DriveRightFront.setPower(0);
+        robot.DriveLeftFront.setPower(0);
+        robot.DriveRightBack.setPower(0);
+        robot.DriveLeftBack.setPower(0);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sleep(100);
+
+        //Strafe Left to Duck Spinner
+        distance = 14;
+        multy = -0.6;
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        tick = (distance * 537.7)/(4 * Math.PI);
+        Time.reset();
+        robot.DriveRightFront.setPower(-multy);
+        robot.DriveLeftFront.setPower(multy);
+        robot.DriveRightBack.setPower(multy);
+        robot.DriveLeftBack.setPower(-multy);
+        while(opModeIsActive() && Time.milliseconds() < 2000 && robot.DriveLeftFront.getCurrentPosition() > -tick) {
+            telemetry.addData("Encoder Val", robot.DriveLeftFront.getCurrentPosition());
+            telemetry.update();
+        }
+        robot.DriveRightFront.setPower(0);
+        robot.DriveLeftFront.setPower(0);
+        robot.DriveRightBack.setPower(0);
+        robot.DriveLeftBack.setPower(0);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        // Forwards Right Side To Align
+        distance = 5;
+        multy = 0.6;
+        robot.DriveRightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        tick = (distance * 537.7) / (4 * Math.PI);
+        Time.reset();
+        robot.DriveRightFront.setPower(-multy);
+        robot.DriveRightBack.setPower(-multy);
+        while (opModeIsActive() && Time.milliseconds() < 4000 && robot.DriveRightFront.getCurrentPosition() > -tick) {
+            telemetry.addData("Encoder Val", robot.DriveRightFront.getCurrentPosition());
+            telemetry.update();
+        }
+        robot.DriveRightFront.setPower(0);
+        robot.DriveLeftFront.setPower(0);
+        robot.DriveRightBack.setPower(0);
+        robot.DriveLeftBack.setPower(0);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sleep(100);
+
+        //Strafe Left to Duck Spinner SLOW
+        distance = 8;
+        multy = -0.1;
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        tick = (distance * 537.7)/(4 * Math.PI);
+        Time.reset();
+        robot.DriveRightFront.setPower(-multy);
+        robot.DriveLeftFront.setPower(multy);
+        robot.DriveRightBack.setPower(multy);
+        robot.DriveLeftBack.setPower(-multy);
+        while(opModeIsActive() && Time.milliseconds() < 2000 && robot.DriveLeftFront.getCurrentPosition() > -tick) {
+            telemetry.addData("Encoder Val", robot.DriveLeftFront.getCurrentPosition());
+            telemetry.update();
+        }
+        robot.DriveRightFront.setPower(0);
+        robot.DriveLeftFront.setPower(0);
+        robot.DriveRightBack.setPower(0);
+        robot.DriveLeftBack.setPower(0);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sleep(100);
+
+        //Duck Spinner
+        robot.DuckRight.setPower(-0.5);
+        sleep(3500);
+        robot.DuckRight.setPower(0);
+        sleep(750);
+
+        //Strafe Right to park
+        distance = 23;
+        multy = -0.5;
+        robot.DriveRightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        tick = (distance * 537.7)/(4 * Math.PI);
+        Time.reset();
+        robot.DriveRightFront.setPower(multy);
+        robot.DriveLeftFront.setPower(-multy);
+        robot.DriveRightBack.setPower(-multy);
+        robot.DriveLeftBack.setPower(multy);
+        while(opModeIsActive() && Time.milliseconds() < 2000 && robot.DriveRightFront.getCurrentPosition() > -tick) {
+            telemetry.addData("Encoder Val", robot.DriveRightFront.getCurrentPosition());
+            telemetry.update();
+        }
+        robot.DriveRightFront.setPower(0);
+        robot.DriveLeftFront.setPower(0);
+        robot.DriveRightBack.setPower(0);
+        robot.DriveLeftBack.setPower(0);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        sleep(100);
+        robot.DriveRightFront.setPower(-0.5);
+        robot.DriveLeftFront.setPower(-0.5);
+        robot.DriveRightBack.setPower(-0.5);
+        robot.DriveLeftBack.setPower(-0.5);
+        sleep(300);
+
+        robot.DriveRightFront.setPower(0);
+        robot.DriveLeftFront.setPower(0);
+        robot.DriveRightBack.setPower(0);
+        robot.DriveLeftBack.setPower(0);
+        sleep(100);
+
+
+        /*switch (detectedLocation) {
+            case LEFT:
+                // score low
+                robot.Intake.setPower(-0.15);
+                sleep(1000);
+                robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                robot.Intake.setPower(-0.3);
+                double tick = 400;
+                while(opModeIsActive() && Time.milliseconds() < 4000 && robot.Intake.getCurrentPosition() > -tick) {
+                    telemetry.addData("Encoder Val", robot.Intake.getCurrentPosition());
+                    telemetry.update();
+                }
+                robot.Intake.setPower(-0.02);
+                robot.IntakeWheel.setPower(0.5);
+                sleep(1000);
+                robot.IntakeWheel.setPower(0);
+                robot.Intake.setPower(0);
+                robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                sleep(500);
+                break;
+            case CENTER:
+                // score mid
+                //Scoring Level 2
+                robot.Intake.setPower(-0.15);
+                sleep(1000);
+                robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                robot.Intake.setPower(-0.3);
+                double tick = 750;
+                while(opModeIsActive() && Time.milliseconds() < 4000 && robot.Intake.getCurrentPosition() > -tick) {
+                    telemetry.addData("Encoder Val", robot.Intake.getCurrentPosition());
+                    telemetry.update();
+                }
+                robot.Intake.setPower(-0.02);
+                robot.IntakeWheel.setPower(0.5);
+                sleep(1000);
+                robot.IntakeWheel.setPower(0);
+                robot.Intake.setPower(0);
+                robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                sleep(500);
+                break;
+            case RIGHT:
+                // score high
+                //Scoring Level 3
+                robot.Intake.setPower(-0.15);
+                sleep(1000);
+                robot.Intake.setMode(DcMotor.RunMode.RESET_ENCODERS);
+                robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                robot.Intake.setPower(-0.3);
+                double tick = 1300;
+                while(opModeIsActive() && Time.milliseconds() < 4000 && robot.Intake.getCurrentPosition() > -tick) {
+                    telemetry.addData("Encoder Val", robot.Intake.getCurrentPosition());
+                    telemetry.update();
+                }
+                robot.Intake.setPower(-0.02);
+                robot.IntakeWheel.setPower(0.5);
+                sleep(1000);
+                robot.IntakeWheel.setPower(0);
+                robot.Intake.setPower(0);
+                robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                robot.Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                sleep(500);
+                break;
+            case NOT_FOUND:
+                // score high
+                break;
+        }
+        */
         phoneCam.stopStreaming();
     }
 }
