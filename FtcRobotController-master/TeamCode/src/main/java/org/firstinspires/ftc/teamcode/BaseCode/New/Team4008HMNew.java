@@ -27,7 +27,7 @@ public class Team4008HMNew
     TouchSensor Touch;
     //public Servo Capper = null;
     public Servo NewCapper = null;
-    public RevBlinkinLedDriver Lights = null;
+   // public RevBlinkinLedDriver Lights = null;
     //MAKE IT
     HardwareMap hwMap           =  null;
     //public ElapsedTime period  = new ElapsedTime();
@@ -44,7 +44,7 @@ public class Team4008HMNew
         DriveLeftBack = hwMap.get(DcMotor.class,"DriveLeftBack");
         DriveRightBack = hwMap.get(DcMotor.class,"DriveRightBack");
         NewCapper = hwMap.get(Servo.class,"NewCapper");
-        Lights = hwMap.get(RevBlinkinLedDriver.class,"Lights");
+     //   Lights = hwMap.get(RevBlinkinLedDriver.class,"Lights");
 
         DriveLeftFront.setDirection(DcMotor.Direction.FORWARD);
         DriveLeftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

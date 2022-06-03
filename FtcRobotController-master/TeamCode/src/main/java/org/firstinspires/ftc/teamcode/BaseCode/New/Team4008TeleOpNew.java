@@ -29,7 +29,7 @@ public class Team4008TeleOpNew extends LinearOpMode
         telemetry.addData("Say", "TeleOp Starting");
         telemetry.update();
         robot.NewCapper.setPosition(0.9);
-        /*robot.DriveRightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveRightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.DriveLeftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveLeftBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -39,8 +39,8 @@ public class Team4008TeleOpNew extends LinearOpMode
         robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.Intake.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        */
-        robot.Lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.BEATS_PER_MINUTE_PARTY_PALETTE);
+
+        //robot.Lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.BEATS_PER_MINUTE_PARTY_PALETTE);
         waitForStart();
 
         while (opModeIsActive()) {
@@ -48,7 +48,7 @@ public class Team4008TeleOpNew extends LinearOpMode
             double mag = speedslow ? 0.3 : 1.0;
 
             boolean speedslow1 = gamepad1.left_bumper;
-            double mag1 = speedslow1 ? 0.65 : 1.0;
+            double mag1 = speedslow1 ? 0.45 : 1.0;
 
             double y = gamepad1.left_stick_y; // Remember, this is reversed!
             double x = -gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
@@ -56,11 +56,6 @@ public class Team4008TeleOpNew extends LinearOpMode
 
 
             if (robot.Touch.isPressed()) {
-                robot.Lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.HEARTBEAT_WHITE);
-                telemetry.addData("Touch", robot.Touch.isPressed());
-                telemetry.update();
-            } else {
-                robot.Lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.RED_ORANGE);
                 telemetry.addData("Touch", robot.Touch.isPressed());
                 telemetry.update();
             }
@@ -75,13 +70,13 @@ public class Team4008TeleOpNew extends LinearOpMode
             double frontRightPower = (y - x - rx) / denominator;
             double backRightPower = (y + x - rx) / denominator;
 
-            /*telemetry.addData("RightFront", robot.DriveRightFront.getCurrentPosition());
+            telemetry.addData("RightFront", robot.DriveRightFront.getCurrentPosition());
             telemetry.addData("RightBack", robot.DriveRightBack.getCurrentPosition());
             telemetry.addData("LeftFront", robot.DriveLeftFront.getCurrentPosition());
             telemetry.addData("LeftBack", robot.DriveLeftBack.getCurrentPosition());
             telemetry.addData("Intake Encoder", robot.Intake.getCurrentPosition());
             telemetry.addData("Intake Power", robot.Intake.getPower());
-            telemetry.update(); */
+            telemetry.update();
 
             robot.DriveLeftFront.setPower(frontLeftPower * mag * mag1);
             robot.DriveLeftBack.setPower(backLeftPower * mag * mag1);
@@ -122,7 +117,7 @@ public class Team4008TeleOpNew extends LinearOpMode
             }
 
             if (gamepad2.b) {
-                robot.DuckRight.setPower(0.75);
+                robot.DuckRight.setPower(-0.75);
             } else {
                 robot.DuckRight.setPower(0);
             }

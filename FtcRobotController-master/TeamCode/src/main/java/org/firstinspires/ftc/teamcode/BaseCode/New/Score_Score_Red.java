@@ -115,7 +115,7 @@ public class Score_Score_Red extends LinearOpMode {
         robot.Intake.setPower(0);
         sleep(500);
 
-        //Drive Straight
+       /* //Drive Straight
         distance = 35;
         multy = 0.8;
         robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -144,9 +144,8 @@ public class Score_Score_Red extends LinearOpMode {
         sleep(2000);
         robot.IntakeWheel.setPower(0);
         if (robot.Touch.isPressed()){
-            robot.Lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.HEARTBEAT_WHITE);
             telemetry.addData("Touch", robot.Touch.isPressed());
-            telemetry.update();}
+            telemetry.update();}*/
         //drive back
         /*distance = 10;
         multy = 0.8;

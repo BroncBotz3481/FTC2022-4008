@@ -21,27 +21,28 @@ public class Score_Score_Blue extends LinearOpMode {
         robot.Map(hardwareMap);
         waitForStart();
 
-        //Strafe out from wall Left
-        double distance = 45;
-        multy = 0.6;
-        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        double tick = (distance * 537.7)/(4 * Math.PI);
+        //Strafe out from wall
+        double distance = 40;
+        multy = 0.5;
+        robot.DriveRightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        double tick = (distance * 537.7) / (4 * Math.PI);
         Time.reset();
         robot.DriveRightFront.setPower(-multy);
         robot.DriveLeftFront.setPower(multy);
         robot.DriveRightBack.setPower(multy);
         robot.DriveLeftBack.setPower(-multy);
-        while(opModeIsActive() && Time.milliseconds() < 2000 && robot.DriveLeftFront.getCurrentPosition() < tick) {
-            telemetry.addData("Encoder Val", robot.DriveLeftFront.getCurrentPosition());
+        while (opModeIsActive() && Time.milliseconds() < 2500 && robot.DriveRightFront.getCurrentPosition() < tick) {
+            telemetry.addData("Encoder Val", robot.DriveRightFront.getCurrentPosition());
             telemetry.update();
         }
         robot.DriveRightFront.setPower(0);
         robot.DriveLeftFront.setPower(0);
         robot.DriveRightBack.setPower(0);
         robot.DriveLeftBack.setPower(0);
-        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
         //Scoring Level 3
         robot.Intake.setPower(-0.15);
@@ -55,7 +56,7 @@ public class Score_Score_Blue extends LinearOpMode {
             telemetry.update();
         }
         robot.Intake.setPower(-0.02);
-        robot.IntakeWheel.setPower(0.8);
+        robot.IntakeWheel.setPower(0.5);
         sleep(1000);
         robot.IntakeWheel.setPower(0);
         robot.Intake.setPower(0);
@@ -64,16 +65,16 @@ public class Score_Score_Blue extends LinearOpMode {
         sleep(500);
 
         //Turning Around
-        distance = 45;
+        distance = 15;
         multy = 0.3;
         robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         tick = (distance * 537.7) / (4 * Math.PI);
         Time.reset();
-        robot.DriveRightFront.setPower(multy);
-        robot.DriveLeftFront.setPower(-multy);
-        robot.DriveRightBack.setPower(multy);
-        robot.DriveLeftBack.setPower(-multy);
+        robot.DriveRightFront.setPower(-multy);
+        robot.DriveLeftFront.setPower(multy);
+        robot.DriveRightBack.setPower(-multy);
+        robot.DriveLeftBack.setPower(multy);
         while (opModeIsActive() && Time.milliseconds() < 4000 && robot.DriveLeftFront.getCurrentPosition() > -tick) {
             telemetry.addData("Encoder Val", robot.DriveLeftFront.getCurrentPosition());
             telemetry.update();
@@ -87,26 +88,26 @@ public class Score_Score_Blue extends LinearOpMode {
         sleep(750);
 
         //Strafing to wall
-        distance = 48;
-        multy = 0.6;
-        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        tick = (distance * 537.7)/(4 * Math.PI);
+        distance = 36;
+        multy = 1;
+        robot.DriveRightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        tick = (distance * 537.7) / (4 * Math.PI);
         Time.reset();
         robot.DriveRightFront.setPower(-multy);
         robot.DriveLeftFront.setPower(multy);
         robot.DriveRightBack.setPower(multy);
         robot.DriveLeftBack.setPower(-multy);
-        while(opModeIsActive() && Time.milliseconds() < 2000 && robot.DriveLeftFront.getCurrentPosition() < tick) {
-            telemetry.addData("Encoder Val", robot.DriveLeftFront.getCurrentPosition());
+        while (opModeIsActive() && Time.milliseconds() < 2000 && robot.DriveRightFront.getCurrentPosition() < tick) {
+            telemetry.addData("Encoder Val", robot.DriveRightFront.getCurrentPosition());
             telemetry.update();
         }
         robot.DriveRightFront.setPower(0);
         robot.DriveLeftFront.setPower(0);
         robot.DriveRightBack.setPower(0);
         robot.DriveLeftBack.setPower(0);
-        robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.DriveRightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //Intake Down
         robot.Intake.setPower(0.2);
@@ -114,7 +115,7 @@ public class Score_Score_Blue extends LinearOpMode {
         robot.Intake.setPower(0);
         sleep(500);
 
-        //Drive Straight
+       /* //Drive Straight
         distance = 35;
         multy = 0.8;
         robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -143,9 +144,8 @@ public class Score_Score_Blue extends LinearOpMode {
         sleep(2000);
         robot.IntakeWheel.setPower(0);
         if (robot.Touch.isPressed()){
-            robot.Lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.HEARTBEAT_WHITE);
             telemetry.addData("Touch", robot.Touch.isPressed());
-            telemetry.update();}
+            telemetry.update();}*/
         //drive back
         /*distance = 10;
         multy = 0.8;
