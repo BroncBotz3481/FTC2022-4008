@@ -32,8 +32,8 @@ public class CapperAutoTest extends LinearOpMode {
 //                .createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam"), cameraMonitorViewId);
-        CapperDetector capperDetector = new CapperDetector(telemetry);
-        phoneCam.setPipeline(capperDetector);
+        CapperDetector capperDetector = new CapperDetector(telemetry); //makes new capdector
+        phoneCam.setPipeline(capperDetector);//run the color dect for every frame of vid
         phoneCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {
             @Override
@@ -63,7 +63,7 @@ public class CapperAutoTest extends LinearOpMode {
         });
 
         waitForStart();
-        CapperDetector.Location detectedLocation = capperDetector.getLocation();
+        CapperDetector.Location detectedLocation = capperDetector.getLocation(); //automatically returns the location for everyframe
         robot.Map(hardwareMap);
         waitForStart();
 

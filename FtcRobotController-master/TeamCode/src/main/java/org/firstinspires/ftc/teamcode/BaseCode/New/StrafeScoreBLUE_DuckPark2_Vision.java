@@ -158,7 +158,7 @@ public class StrafeScoreBLUE_DuckPark2_Vision extends LinearOpMode{
         robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sleep(100);
 
-        switch (detectedLocation) {
+        switch (detectedLocation) { //depending on location, appropriate auto will run
             case LEFT:
                 // score low
                 robot.Intake.setPower(-0.15);
