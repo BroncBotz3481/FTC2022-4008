@@ -37,6 +37,7 @@ public class StrafeScoreRED_DuckPark2 extends LinearOpMode{
         phoneCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam"), cameraMonitorViewId);
         CapperDetector capperDetector = new CapperDetector(telemetry);
         phoneCam.setPipeline(capperDetector);
+        
         phoneCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {
             @Override
